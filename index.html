@@ -70,6 +70,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-canvas4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/26/canvas4/" class="article-date">
+  <time datetime="2019-12-26T06:57:08.000Z" itemprop="datePublished">2019-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/26/canvas4/">canvas--使用图片</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="引入图像到canvas里"><a href="#引入图像到canvas里" class="headerlink" title="引入图像到canvas里"></a>引入图像到canvas里</h2><p>需要以下两步基本操作：</p>
+<h3 id="1-获得一个指向HTMLImageElement的对象或者另一个canvas元素的引用作为源，也可以通过提供一个URL的方式来使用图片"><a href="#1-获得一个指向HTMLImageElement的对象或者另一个canvas元素的引用作为源，也可以通过提供一个URL的方式来使用图片" class="headerlink" title="1.获得一个指向HTMLImageElement的对象或者另一个canvas元素的引用作为源，也可以通过提供一个URL的方式来使用图片"></a>1.获得一个指向HTMLImageElement的对象或者另一个canvas元素的引用作为源，也可以通过提供一个URL的方式来使用图片</h3><p>canvas的API可以使用下面这些类型中的一种作为图片的源：</p>
+<h4 id="1-1-HTMLImageElement"><a href="#1-1-HTMLImageElement" class="headerlink" title="1.1 HTMLImageElement"></a>1.1 HTMLImageElement</h4><p>这些图片是由<strong>Image()函数</strong>构造出来的，或者任何的<strong>img</strong>元素</p>
+<h4 id="1-2-HTMLVideoElement"><a href="#1-2-HTMLVideoElement" class="headerlink" title="1.2 HTMLVideoElement"></a>1.2 HTMLVideoElement</h4><p>用一个HTML的 <strong>video</strong>元素作为你的图片源，可以从视频中抓取当前帧作为一个图像</p>
+<h4 id="1-3-HTMLCanvasElement"><a href="#1-3-HTMLCanvasElement" class="headerlink" title="1.3 HTMLCanvasElement"></a>1.3 HTMLCanvasElement</h4><p>可以使用另一个 <strong>canvas</strong> 元素作为你的图片源。</p>
+<h4 id="1-4-ImageBitmap"><a href="#1-4-ImageBitmap" class="headerlink" title="1.4 ImageBitmap"></a>1.4 ImageBitmap</h4><p>这是一个高性能的位图，可以低延迟地绘制，它可以从上述的所有源以及其它几种源中生成。</p>
+<h3 id="获取图片的方式"><a href="#获取图片的方式" class="headerlink" title="获取图片的方式"></a>获取图片的方式</h3><ul>
+<li>使用相同页面的图片（同域）</li>
+<li>使用其他域名下的图片（跨域）</li>
+<li>使用其他canvas元素</li>
+<li>从零开始创建图像</li>
+<li>通过data：url方式嵌入图像</li>
+<li>使用视频帧<h3 id="2-使用drawImage-函数将图片绘制到画布上"><a href="#2-使用drawImage-函数将图片绘制到画布上" class="headerlink" title="2.使用drawImage()函数将图片绘制到画布上"></a>2.使用drawImage()函数将图片绘制到画布上</h3><h4 id="2-1-绘制图片"><a href="#2-1-绘制图片" class="headerlink" title="2.1 绘制图片"></a>2.1 绘制图片</h4>drawImage(image,x,y)</li>
+</ul>
+<h4 id="2-2-缩放-Scaling"><a href="#2-2-缩放-Scaling" class="headerlink" title="2.2 缩放 Scaling"></a>2.2 缩放 Scaling</h4><p>drawImage(image, x, y, width, height)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>);</span><br><span class="line">    <span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, <span class="number">150</span>, <span class="number">150</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        img.src = <span class="string">"./test.jpg"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2019/12/26/canvas4/img1.png" class title="设置图片宽高">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>);</span><br><span class="line">    <span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">                    ctx.drawImage(img, i * <span class="number">50</span>, j * <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        img.src = <span class="string">"./test.jpg"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2019/12/26/canvas4/img2.png" class title="缩放">
+
+<h4 id="2-2-切片-Slicing"><a href="#2-2-切片-Slicing" class="headerlink" title="2.2 切片 Slicing"></a>2.2 切片 Slicing</h4><p>drawImage(image,sx,sy,sWidth,sHeight,dx,dy,dWidth,dHeight)</p>
+<ul>
+<li>sx,sy,sWidth,sHeight 是定义图像源的切片位置和大小</li>
+<li>dx,dy,dWidth,dHeight 是定义切片的目标显示位置和大小。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>);</span><br><span class="line">    <span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            ctx.drawImage(img, <span class="number">50</span>,<span class="number">71</span>,<span class="number">704</span>,<span class="number">824</span>,<span class="number">21</span>,<span class="number">20</span>,<span class="number">237</span>,<span class="number">304</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        img.src=<span class="string">"./avatar.png"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2019/12/26/canvas4/img3.png" class title="切片">
+
+<p>合成两张图片</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>);</span><br><span class="line">    <span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">        img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            ctx.drawImage(<span class="built_in">document</span>.getElementById(<span class="string">'bg'</span>),<span class="number">-50</span>,<span class="number">-50</span>)</span><br><span class="line">            ctx.drawImage(img, <span class="number">50</span>,<span class="number">71</span>,<span class="number">704</span>,<span class="number">824</span>,<span class="number">21</span>,<span class="number">20</span>,<span class="number">237</span>,<span class="number">304</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        img.src=<span class="string">"./avatar.png"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2019/12/26/canvas4/img4.png" class title="合成图片">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/26/canvas4/" data-id="ck4mksblu000068g29sltdsba" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/" rel="tag">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-canvas3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/23/canvas3/" class="article-date">
@@ -1261,6 +1331,10 @@
       <ul>
         
           <li>
+            <a href="/2019/12/26/canvas4/">canvas--使用图片</a>
+          </li>
+        
+          <li>
             <a href="/2019/12/23/canvas3/">canvas--绘制文本</a>
           </li>
         
@@ -1274,10 +1348,6 @@
         
           <li>
             <a href="/2019/12/13/vue%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B0%B4%E5%8D%B0/">vue项目中使用水印</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/13/hexo%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84github%E5%8D%9A%E5%AE%A2/">利用hexo搭建属于自己的github博客</a>
           </li>
         
       </ul>
