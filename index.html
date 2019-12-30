@@ -70,6 +70,111 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-canvas5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/27/canvas5/" class="article-date">
+  <time datetime="2019-12-27T07:59:17.000Z" itemprop="datePublished">2019-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/27/canvas5/">canvas--变形</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-状态的保存和回复-Saving-and-Restoring-state"><a href="#1-状态的保存和回复-Saving-and-Restoring-state" class="headerlink" title="1.状态的保存和回复 Saving and Restoring state"></a>1.状态的保存和回复 Saving and Restoring state</h2><h4 id="1-1-save"><a href="#1-1-save" class="headerlink" title="1.1 save()"></a>1.1 save()</h4><p>保存画布(canvas)当前的所有状态</p>
+<h4 id="1-2-restore"><a href="#1-2-restore" class="headerlink" title="1.2 restore()"></a>1.2 restore()</h4><p>恢复画布(canvas)的上一个已保存的状</p>
+<h6 id="Canvas状态存储在栈中，每当save-方法被调用后，当前的状态就被推送到栈中保存。"><a href="#Canvas状态存储在栈中，每当save-方法被调用后，当前的状态就被推送到栈中保存。" class="headerlink" title="Canvas状态存储在栈中，每当save()方法被调用后，当前的状态就被推送到栈中保存。"></a>Canvas状态存储在栈中，每当save()方法被调用后，当前的状态就被推送到栈中保存。</h6><p>一个绘画状态包括：</p>
+<ul>
+<li>当前应用的变形（即移动，旋转和缩放）</li>
+<li>strokeStyle, fillStyle, globalAlpha, lineWidth, lineCap, lineJoin, miterLimit, shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor, globalCompositeOperation 的值</li>
+<li>当前的裁切路径（clipping path）<br>可以调用任意多次 save 方法。</li>
+</ul>
+<h6 id="每一次调用-restore-方法，上一个保存的状态就从栈中弹出，所有设定都恢复。"><a href="#每一次调用-restore-方法，上一个保存的状态就从栈中弹出，所有设定都恢复。" class="headerlink" title="每一次调用 restore 方法，上一个保存的状态就从栈中弹出，所有设定都恢复。"></a>每一次调用 restore 方法，上一个保存的状态就从栈中弹出，所有设定都恢复。</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>);</span><br><span class="line">    <span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">150</span>, <span class="number">150</span>); <span class="comment">// 默认 #000</span></span><br><span class="line">        ctx.save();</span><br><span class="line">        ctx.fillStyle = <span class="string">"#f00"</span>;</span><br><span class="line">        ctx.fillRect(<span class="number">20</span>, <span class="number">20</span>, <span class="number">110</span>, <span class="number">110</span>);</span><br><span class="line">        ctx.save();</span><br><span class="line">        ctx.fillStyle = <span class="string">"#ff0"</span>;</span><br><span class="line">        ctx.fillRect(<span class="number">40</span>, <span class="number">40</span>, <span class="number">70</span>, <span class="number">70</span>);</span><br><span class="line">        ctx.save(); </span><br><span class="line">        ctx.restore(); </span><br><span class="line">        ctx.fillRect(<span class="number">30</span>, <span class="number">30</span>, <span class="number">90</span>, <span class="number">90</span>); <span class="comment">// #ff0</span></span><br><span class="line">        ctx.restore();</span><br><span class="line">        ctx.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">130</span>, <span class="number">130</span>); <span class="comment">// #f00</span></span><br><span class="line">        ctx.restore();</span><br><span class="line">        ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">150</span>, <span class="number">150</span>); <span class="comment">// #000</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<h2 id="2-移动-Translating"><a href="#2-移动-Translating" class="headerlink" title="2.移动 Translating"></a>2.移动 Translating</h2><h4 id="1-1-translate-x-y-它用来移动-canvas-和它的原点到一个不同的位置。"><a href="#1-1-translate-x-y-它用来移动-canvas-和它的原点到一个不同的位置。" class="headerlink" title="1.1 translate(x, y)它用来移动 canvas 和它的原点到一个不同的位置。"></a>1.1 translate(x, y)它用来移动 canvas 和它的原点到一个不同的位置。</h4><p>translate 方法接受两个参数。</p>
+<ul>
+<li>x 是左右偏移量</li>
+<li>y 是上下偏移量</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>);</span><br><span class="line">    <span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">                ctx.save();</span><br><span class="line">                ctx.fillStyle = <span class="string">'rgb('</span> + (<span class="number">51</span> * i) + <span class="string">','</span> + (<span class="number">255</span> - <span class="number">51</span> * i) + <span class="string">',255)'</span>;</span><br><span class="line">                ctx.translate(<span class="number">10</span> + j * <span class="number">50</span>, <span class="number">10</span> + i * <span class="number">50</span>);</span><br><span class="line">                ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">25</span>)</span><br><span class="line">                ctx.restore();</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>未使用translate，如果不使用 translate 方法，那么所有矩形都将被绘制在相同的位置（0,0）</p>
+<img src="/2019/12/27/canvas5/t1.png" class title="translate">
+<p>使用translate，可以移动 canvas 原点，translate 方法同时让我们可以任意放置这些图案，而不需要在 fillRect() 方法中手工调整坐标值</p>
+<img src="/2019/12/27/canvas5/t1.png" class title="translate">
+
+<h2 id="2-旋转-Rotating"><a href="#2-旋转-Rotating" class="headerlink" title="2.旋转 Rotating"></a>2.旋转 Rotating</h2><h4 id="2-1-rotate-angle-以原点为中心旋转-canvas"><a href="#2-1-rotate-angle-以原点为中心旋转-canvas" class="headerlink" title="2.1 rotate(angle) 以原点为中心旋转 canvas"></a>2.1 rotate(angle) 以原点为中心旋转 canvas</h4><p>rotate(angle)<br>这个方法只接受一个参数：旋转的角度(angle)，它是顺时针方向的，以弧度为单位的值。<br>旋转的中心点始终是 canvas 的原点，如果要改变它，我们需要用到 translate 方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>);</span><br><span class="line">    <span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        ctx.translate(<span class="number">75</span>, <span class="number">75</span>); <span class="comment">// 每次循环之后，圆心的位置都回到（75，75）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123; <span class="comment">// 第一层循环决定环的数量</span></span><br><span class="line">            ctx.save();</span><br><span class="line">            ctx.fillStyle = <span class="string">'rgb('</span> + (<span class="number">51</span> * i) + <span class="string">','</span> + (<span class="number">255</span> - <span class="number">51</span> * i) + <span class="string">',255)'</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i*<span class="number">1</span>; j++) &#123; <span class="comment">// 第二层循环决定每环有多少个点</span></span><br><span class="line">                <span class="comment">// 每次画圆点，我都以一定夹角来旋转 canvas，而这个夹角则是由环上的圆点数目的决定的。最里层的环有 6 个圆点，这样，每次旋转的夹角就是 360/6 = 60 度。</span></span><br><span class="line">                <span class="comment">// 往外每一环的圆点数目是里面一环的 2 倍，那么每次旋转的夹角随之减半。</span></span><br><span class="line">                ctx.rotate(<span class="built_in">Math</span>.PI * <span class="number">2</span> / (i *</span><br><span class="line">                    <span class="number">6</span>)) <span class="comment">// 第一圈旋转0° 第二圈旋转60° 第三圈旋转30° 第四圈旋转15° 第五圈旋转12° 第六圈旋转10° 第七圈旋转8.57°...</span></span><br><span class="line">                ctx.beginPath();</span><br><span class="line">                ctx.arc(<span class="number">0</span>, i * <span class="number">12.5</span>, <span class="number">5</span>, <span class="number">0</span>,<span class="built_in">Math</span>.PI * <span class="number">2</span>, <span class="literal">true</span>); <span class="comment">// x,y,r,startAngle,endAngle,anticlockwise</span></span><br><span class="line">                ctx.fill();</span><br><span class="line">            &#125;</span><br><span class="line">            ctx.restore();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>j &lt; i*1;<br>当i分别为0，1，2，3，4，5时，效果如下：</p>
+<img src="/2019/12/27/canvas5/r1.png" class title="rotate">
+<img src="/2019/12/27/canvas5/r2.png" class title="rotate">
+<img src="/2019/12/27/canvas5/r3.png" class title="rotate">
+<img src="/2019/12/27/canvas5/r4.png" class title="rotate">
+<img src="/2019/12/27/canvas5/r5.png" class title="rotate">
+<img src="/2019/12/27/canvas5/r6.png" class title="rotate">
+
+
+
+<h2 id="3-缩放-Scaling"><a href="#3-缩放-Scaling" class="headerlink" title="3.缩放 Scaling"></a>3.缩放 Scaling</h2><h4 id="3-1-scale-x-y-增减图形在-canvas-中的像素数目，对形状，位图进行缩小或者放大"><a href="#3-1-scale-x-y-增减图形在-canvas-中的像素数目，对形状，位图进行缩小或者放大" class="headerlink" title="3.1 scale(x,y) 增减图形在 canvas 中的像素数目，对形状，位图进行缩小或者放大"></a>3.1 scale(x,y) 增减图形在 canvas 中的像素数目，对形状，位图进行缩小或者放大</h4><p>两个参数都是实数，可以为负数，如果比1小，会比缩放图形， 如果比1大会放大图形。默认值为1， 为实际大小。</p>
+<ul>
+<li>x 为水平缩放因子</li>
+<li>y 为垂直缩放因子</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>);</span><br><span class="line">    <span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        ctx.save();</span><br><span class="line">        ctx.scale(<span class="number">10</span>, <span class="number">3</span>);</span><br><span class="line">        ctx.fillRect(<span class="number">1</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line">        ctx.restore();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>未设置缩放</p>
+<img src="/2019/12/27/canvas5/s1.png" class title="scale">
+<p>设置缩放 ctx.scale(10, 3);</p>
+<img src="/2019/12/27/canvas5/s1.png" class title="scale">
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'tutorial'</span>);</span><br><span class="line">    <span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">        <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        ctx.scale(<span class="number">-1</span>, <span class="number">1</span>);</span><br><span class="line">        ctx.font = <span class="string">'48px serif'</span>;</span><br><span class="line">        ctx.fillText(<span class="string">'Nancy'</span>, <span class="number">-135</span>, <span class="number">120</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/12/27/canvas5/s3.png" class title="scale">
+
+<h2 id="4-变形-Transforms"><a href="#4-变形-Transforms" class="headerlink" title="4.变形 Transforms"></a>4.变形 Transforms</h2><h4 id="4-1-transform-m11-m12-m21-m22-dx-dy-将当前的变形矩阵乘上一个基于自身参数的矩阵"><a href="#4-1-transform-m11-m12-m21-m22-dx-dy-将当前的变形矩阵乘上一个基于自身参数的矩阵" class="headerlink" title="4.1 transform(m11, m12, m21, m22, dx, dy) 将当前的变形矩阵乘上一个基于自身参数的矩阵"></a>4.1 transform(m11, m12, m21, m22, dx, dy) 将当前的变形矩阵乘上一个基于自身参数的矩阵</h4><ul>
+<li>m11：水平方向的缩放</li>
+<li>m12：水平方向的倾斜偏移 </li>
+<li>m21：竖直方向的倾斜偏移</li>
+<li>m22：竖直方向的缩放</li>
+<li>dx：水平方向的移动</li>
+<li>dy：竖直方向的移动<h4 id="4-2-resetTransform-重置当前变形为单位矩阵"><a href="#4-2-resetTransform-重置当前变形为单位矩阵" class="headerlink" title="4.2 resetTransform() 重置当前变形为单位矩阵"></a>4.2 resetTransform() 重置当前变形为单位矩阵</h4>等同于<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.setTransform(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> sin = <span class="built_in">Math</span>.sin(<span class="built_in">Math</span>.PI/<span class="number">6</span>);</span><br><span class="line">  <span class="keyword">var</span> cos = <span class="built_in">Math</span>.cos(<span class="built_in">Math</span>.PI/<span class="number">6</span>);</span><br><span class="line">  ctx.translate(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">  <span class="keyword">var</span> c = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt;= <span class="number">12</span>; i++) &#123;</span><br><span class="line">    c = <span class="built_in">Math</span>.floor(<span class="number">255</span> / <span class="number">12</span> * i);</span><br><span class="line">    ctx.fillStyle = <span class="string">"rgb("</span> + c + <span class="string">","</span> + c + <span class="string">","</span> + c + <span class="string">")"</span>;</span><br><span class="line">    ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">10</span>);</span><br><span class="line">    ctx.transform(cos, sin, -sin, cos, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  ctx.setTransform(<span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">  ctx.fillStyle = <span class="string">"rgba(255, 128, 255, 0.5)"</span>;</span><br><span class="line">  ctx.fillRect(<span class="number">0</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/12/27/canvas5/t1.png" class title="transform">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/27/canvas5/" data-id="ck4s6i5o500001cg294b3ao9d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/" rel="tag">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-canvas4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/26/canvas4/" class="article-date">
@@ -393,7 +498,7 @@
 <li>3.之后你把路径封闭。</li>
 <li>4.一旦路径生成，你就能通过描边或填充路径区域来渲染图形。</li>
 </ul>
-<h4 id="常用方法："><a href="#常用方法：" class="headerlink" title="常用方法："></a>常用方法：</h4><h5 id="1-beginPath-新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径"><a href="#1-beginPath-新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径" class="headerlink" title="1.beginPath() 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径"></a>1.beginPath() 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径</h5><h5 id="2-closePath-闭合路径之后图形绘制命令又重新指向到上下文中"><a href="#2-closePath-闭合路径之后图形绘制命令又重新指向到上下文中" class="headerlink" title="2.closePath() 闭合路径之后图形绘制命令又重新指向到上下文中"></a>2.closePath() 闭合路径之后图形绘制命令又重新指向到上下文中</h5><h5 id="3-moveTo-x-y-将一个新的子路径的起始点移动到-x，y-坐标。"><a href="#3-moveTo-x-y-将一个新的子路径的起始点移动到-x，y-坐标。" class="headerlink" title="3.moveTo(x, y) 将一个新的子路径的起始点移动到(x，y)坐标。"></a>3.moveTo(x, y) 将一个新的子路径的起始点移动到(x，y)坐标。</h5><h5 id="4-lineTo-x-y-使用直线连接子路径的最后的点到x-y坐标。"><a href="#4-lineTo-x-y-使用直线连接子路径的最后的点到x-y坐标。" class="headerlink" title="4.lineTo(x, y) 使用直线连接子路径的最后的点到x,y坐标。"></a>4.lineTo(x, y) 使用直线连接子路径的最后的点到x,y坐标。</h5><h5 id="5-arc-x-y-radius-startAngle-endAngle-anticlockwise-绘制一段圆弧路径"><a href="#5-arc-x-y-radius-startAngle-endAngle-anticlockwise-绘制一段圆弧路径" class="headerlink" title="5.arc(x, y, radius, startAngle, endAngle, anticlockwise)绘制一段圆弧路径"></a>5.arc(x, y, radius, startAngle, endAngle, anticlockwise)绘制一段圆弧路径</h5><ul>
+<h4 id="常用方法："><a href="#常用方法：" class="headerlink" title="常用方法："></a>常用方法：</h4><h5 id="1-beginPath-新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径"><a href="#1-beginPath-新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径" class="headerlink" title="1.beginPath() 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径"></a>1.beginPath() 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径</h5><h5 id="2-closePath-闭合路径之后图形绘制命令又重新指向到上下文中"><a href="#2-closePath-闭合路径之后图形绘制命令又重新指向到上下文中" class="headerlink" title="2.closePath() 闭合路径之后图形绘制命令又重新指向到上下文中"></a>2.closePath() 闭合路径之后图形绘制命令又重新指向到上下文中</h5><h5 id="3-moveTo-x-y-将一个新的子路径的起始点移动到-x，y-坐标。"><a href="#3-moveTo-x-y-将一个新的子路径的起始点移动到-x，y-坐标。" class="headerlink" title="3.moveTo(x, y) 将一个新的子路径的起始点移动到(x，y)坐标。"></a>3.moveTo(x, y) 将一个新的子路径的起始点移动到(x，y)坐标。</h5><h5 id="4-lineTo-x-y-使用直线连接子路径的最后的点到x-y坐标。"><a href="#4-lineTo-x-y-使用直线连接子路径的最后的点到x-y坐标。" class="headerlink" title="4.lineTo(x, y) 使用直线连接子路径的最后的点到x,y坐标。"></a>4.lineTo(x, y) 使用直线连接子路径的最后的点到x,y坐标。</h5><h5 id="5-arc-x-y-r-startAngle-endAngle-anticlockwise-绘制一段圆弧路径"><a href="#5-arc-x-y-r-startAngle-endAngle-anticlockwise-绘制一段圆弧路径" class="headerlink" title="5.arc(x, y, r, startAngle, endAngle, anticlockwise)绘制一段圆弧路径"></a>5.arc(x, y, r, startAngle, endAngle, anticlockwise)绘制一段圆弧路径</h5><ul>
 <li>圆弧路径的圆心在 (x, y) 位置</li>
 <li>半径为 r</li>
 <li>根据anticlockwise （默认为顺时针,false）指定的方向从 startAngle 开始绘制，到 endAngle 结束。</li>
@@ -1331,6 +1436,10 @@
       <ul>
         
           <li>
+            <a href="/2019/12/27/canvas5/">canvas--变形</a>
+          </li>
+        
+          <li>
             <a href="/2019/12/26/canvas4/">canvas--使用图片</a>
           </li>
         
@@ -1344,10 +1453,6 @@
         
           <li>
             <a href="/2019/12/13/canvas/">canvas--基本用法和绘制</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/13/vue%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%B0%B4%E5%8D%B0/">vue项目中使用水印</a>
           </li>
         
       </ul>
