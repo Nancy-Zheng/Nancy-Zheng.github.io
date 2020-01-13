@@ -70,6 +70,45 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-查看浏览器缩放比" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/13/%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%A9%E6%94%BE%E6%AF%94/" class="article-date">
+  <time datetime="2020-01-13T08:25:11.000Z" itemprop="datePublished">2020-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/13/%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%A9%E6%94%BE%E6%AF%94/">查看浏览器缩放比</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>查看浏览器缩放比<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"alert(detectZoom())"</span>&gt;</span>查看<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">detectZoom</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">var</span> ratio = <span class="number">0</span>,</span></span><br><span class="line"><span class="javascript">                screen = <span class="built_in">window</span>.screen,</span></span><br><span class="line">                ua = navigator.userAgent.toLowerCase();</span><br><span class="line"></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (<span class="built_in">window</span>.devicePixelRatio !== <span class="literal">undefined</span>) &#123;</span></span><br><span class="line"><span class="javascript">                ratio = <span class="built_in">window</span>.devicePixelRatio;</span></span><br><span class="line"><span class="actionscript">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (~ua.indexOf(<span class="string">'msie'</span>)) &#123;</span></span><br><span class="line">                if (screen.deviceXDPI &amp;&amp; screen.logicalXDPI) &#123;</span><br><span class="line">                    ratio = screen.deviceXDPI / screen.logicalXDPI;</span><br><span class="line">                &#125;</span><br><span class="line"><span class="javascript">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.outerWidth !== <span class="literal">undefined</span> &amp;&amp; <span class="built_in">window</span>.innerWidth !== <span class="literal">undefined</span>) &#123;</span></span><br><span class="line"><span class="javascript">                ratio = <span class="built_in">window</span>.outerWidth / <span class="built_in">window</span>.innerWidth;</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (ratio) &#123;</span><br><span class="line"><span class="javascript">                ratio = <span class="built_in">Math</span>.round(ratio * <span class="number">100</span>);</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">            <span class="keyword">return</span> ratio;</span></span><br><span class="line">        &#125;;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2020/01/13/%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%A9%E6%94%BE%E6%AF%94/img.png" class title="缩放比">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/13/%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%A9%E6%94%BE%E6%AF%94/" data-id="ck5c6rpfj0000esg2087f5zxi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-canvas6" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/31/canvas6/" class="article-date">
@@ -1486,7 +1525,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
     </div>
   </div>
 
@@ -1497,6 +1536,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/01/13/%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%A9%E6%94%BE%E6%AF%94/">查看浏览器缩放比</a>
+          </li>
         
           <li>
             <a href="/2019/12/31/canvas6/">canvas- 基本动画</a>
@@ -1514,10 +1557,6 @@
             <a href="/2019/12/23/canvas3/">canvas--绘制文本</a>
           </li>
         
-          <li>
-            <a href="/2019/12/18/canvas2/">canvas--使用样式和颜色</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1530,7 +1569,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 Shengnan Zheng<br>
+      &copy; 2020 Shengnan Zheng<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
